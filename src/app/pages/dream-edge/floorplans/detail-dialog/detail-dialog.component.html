@@ -1,0 +1,16 @@
+<nb-card>
+  <nb-card-header>
+    <h4>{{ param.fpTitle }}</h4>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="container">
+      <div class="row ">
+        <img [src]="param.imgUrl">
+      </div>
+    </div>
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-between">
+    <button nbButton hero status="primary" (click)="dismiss()">Update</button>
+    <button nbButton hero status="secondary" (click)="dismiss()">Close</button>
+  </nb-card-footer>
+</nb-card>

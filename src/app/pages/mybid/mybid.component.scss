@@ -1,0 +1,73 @@
+.upgrade {
+    font-size: 11px;
+    line-height: 1;
+    padding: 4px 8px;
+    word-break: break-word;
+    word-wrap: break-word;
+    align-items: center;
+    background: #ffa32d;
+    border-radius: 12px;
+    color: #fff;
+    display: inline-flex;
+    font-weight: 700;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    margin-right: 4px
+}
+
+.ip {
+    background: #dc0057;
+}
+
+.recruiter {
+    background: #7d30c9;
+}
+
+.nda {
+    background: #2259b5;
+}
+
+.sealed {
+    background: #e716ba;
+}
+
+.user-country {
+    height: 16px;
+}
+
+.payment-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.payment-verified {
+    fill: #5dc26a;
+}
+
+.url-input {
+    width: calc(100% - 100px);
+    position: relative !important;
+}
+
+.url-copy {
+    position: absolute;
+    right: 0;
+}
+
+.form-inline [fullWidth] {
+    flex: 1;
+}
+
+.bid-comment {
+    white-space: pre-wrap;
+}
+
+.acc-header {
+    background-color: #e4e9f2;
+}
+
+nb-card.inline-form-card nb-card-body {
+    padding-bottom: 0;
+}

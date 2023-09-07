@@ -1,0 +1,62 @@
+<nb-card>
+    <nb-card-header>
+        <h5>Medication Detail of {{medication.residents_name}}</h5>
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row">
+            <div class="col-lg-4">
+                <img alt="" src="./assets/images/dorthy-goodall.png" width="150px">
+            </div>
+            <div class="col-lg-8">
+                <div class="home-resident-personal-info">
+                    <h6>Code: {{resident.code}}</h6>
+                    <h6>Gender: {{resident.gender}}</h6>
+                    <h6>D.O.B: {{resident.dob}}</h6>
+                    <h6>Room: {{resident.room}}</h6>
+                    <h6>Doctor: John Doe</h6>
+                    <h6>Nurse: Michelle O'keeffe</h6>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="nb-stepper-container col-lg-12">
+                <nb-stepper orientation="horizontal" disableStepNavigation #stepper [selectedIndex]="stepperIndex" linear="true">
+                    <nb-step label="Scan RX Chart" state="scanRXChart" [completed]="medication.status >= 1">
+                        <input type="file" id="file" (change)="handleFileInput($event)" #file>
+                        <button nbButton status="success" hero (click)="file.click()">
+                            Upload
+                        </button>
+                    </nb-step>
+                    <nb-step label="Uploaded to Medscom" state="createNewRequest" [completed]="medication.status >= 2">
+                        <button nbButton status="info" hero (click)="openMedscomUrl()">
+                            Open Medscom URL
+                        </button>
+                        <button nbButton status="success" hero (click)="completeUploadMedscom()">
+                            Complete
+                        </button>
+                    </nb-step>
+                    <nb-step label="Medication Dispatched" state="deliverMedication" [completed]="medication.status >= 3">
+                        <button nbButton status="success" hero (click)="completeMedicationDispatch()">
+                            Medication Dispatched
+                        </button>
+                    </nb-step>
+                    <nb-step label="Medication Received" state="receiveMedication" [completed]="medication.status >= 4">
+                        <button nbButton status="success" hero (click)="completeMedicationReceive()">
+                            Medication Received
+                        </button>
+                    </nb-step>
+                    <nb-step label="Updated LeeCare App" state="updateLeeCareApp" [completed]="medication.status >= 5">
+                        <input type="text" nbInput shape="round" placeholder="Nurse Name" [(ngModel)]="nurseName">
+                        <button nbButton status="info" hero (click)="openLeecareUrl()">
+                            Open LeeCare URL
+                        </button>
+                        <button nbButton status="success" hero (click)="completeUpdateLeecare()">
+                            Complete
+                        </button>
+                    </nb-step>
+                </nb-stepper>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

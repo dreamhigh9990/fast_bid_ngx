@@ -1,0 +1,17 @@
+<nb-card>
+  <nb-card-header>
+    Medications
+    <div class="form-group import">
+      <button *ngIf="showNewButton" nbButton status="primary" hero (click)="createNewProcess()">
+        Create New Medication
+      </button>
+      <button *ngIf="showRXChartButton" nbButton status="primary" hero (click)="showRXChartFiles()">
+        Show RX Chart PDF Files
+      </button>
+    </div>
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onSelectMedication($event)"></ng2-smart-table>
+  </nb-card-body>
+</nb-card>

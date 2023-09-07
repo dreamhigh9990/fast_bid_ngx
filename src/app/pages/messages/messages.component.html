@@ -1,0 +1,12 @@
+<nb-card>
+    <nb-card-header>
+        Messages <span class="new-message">({{ newMessagesCount }})</span>
+        <button class="mr-2 float-right" nbButton outline status="success" shape="round" (click)="markAllRead()">
+            Mark All Read
+        </button>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>

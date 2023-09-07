@@ -1,0 +1,196 @@
+<div class="row">
+  <div class="col-md-12">
+    <nb-card class="inline-form-card">
+      <nb-card-header class="form-inline">
+        <nb-form-field class="url-input">
+          <input [(ngModel)]="urlInput" type="text" nbInput fullWidth shape="round" placeholder="Project Url" (keyup.enter)="setUrl()">
+          <button nbButton nbSuffix ghost shape="round" (click)="copyUrl()">
+            <nb-icon icon="copy-outline"></nb-icon>
+          </button>
+        </nb-form-field>
+        <button class="ml-2" nbButton outline status="success" shape="round" (click)="setUrl()">
+          Load
+        </button>
+      </nb-card-header>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row" *ngIf="taskInfo.result">
+  <div class="col-md-4">
+    <nb-card class="inline-form-card">
+      <nb-card-header>
+        <h5>
+          <a [href]="'https://www.freelancer.com/projects/'+taskId" target="_blank"
+          *ngIf="taskInfo.result">{{taskInfo.result.title}}</a>
+        </h5>
+        <div class="mt-3" *ngIf="userInfo.result && taskInfo.result">
+          <span *ngIf="userInfo.result.users[taskInfo.result.owner_id]">
+            <img class="user-country mr-1" [alt]="userInfo.result.users[taskInfo.result.owner_id].location.country.name"
+              [src]="'http:'+ userInfo.result.users[taskInfo.result.owner_id].location.country.highres_flag_url_cdn">
+            <a [href]="'https://www.freelancer.com/u/'+userInfo.result.users[taskInfo.result.owner_id].username + '?w=f&ngsw-bypass='">{{userInfo.result.users[taskInfo.result.owner_id].public_name}}</a>
+          </span>
+          <span class="float-right" *ngIf="taskSeoInfo.result && userInfo.result.users[taskInfo.result.owner_id]">
+            <span class="upgrade ip" *ngIf="taskSeoInfo.result.projects[0].upgrades.ip_contract">IP</span>
+            <span class="upgrade nda" *ngIf="taskSeoInfo.result.projects[0].upgrades.NDA">NDA</span>
+            <span class="upgrade recruiter" *ngIf="taskSeoInfo.result.projects[0].upgrades.pf_only">Preferred</span>
+            <span class="upgrade sealed" *ngIf="taskSeoInfo.result.projects[0].upgrades.sealed">Sealed</span>
+            <span class="upgrade" *ngIf="taskSeoInfo.result.projects[0].upgrades.qualified">Verified</span>
+            <span [class]="userInfo.result.users[taskInfo.result.owner_id].status.payment_verified ? 'payment-verified' : ''">
+              <svg class="payment-icon" width="100%" height="100%" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fit="" preserveAspectRatio="xMidYMid meet" focusable="false">
+                <g stroke="none" stroke-width="1" fill-rule="evenodd">
+                  <polygon fill="none" opacity="0" points="2 2 22 2 22 22 2 22"></polygon>
+                  <path d="M20.3421511,2.10528149 C20.0041943,1.93630311 19.6026222,1.97308076 19.3014431,2.19971058 L15.9218756,4.73339219 L12.5423082,2.19871659 C12.1894416,1.93431513 11.7033802,1.93431513 11.3495196,2.19871659 L7.96995216,4.73339219 L4.59038469,2.19871659 C4.2882116,1.97308076 3.88663947,1.93630311 3.54967671,2.10528149 C3.21171996,2.27425986 3,2.61818055 3,2.99390894 L3,11.9398228 C3,17.430626 11.1507215,21.6014098 11.4986182,21.7743642 L11.9459139,22 L12.3932096,21.7753582 C12.7411062,21.6014098 20.8918278,17.430626 20.8918278,11.9398228 L20.8918278,2.99390894 C20.8918278,2.61818055 20.6791138,2.27425986 20.3421511,2.10528149 Z M14.9278852,9.95184196 L11.4489187,9.95184196 C11.1755713,9.95184196 10.9519235,10.1754898 10.9519235,10.4488372 C10.9519235,10.7231785 11.1755713,10.9458324 11.4489187,10.9458324 L12.4429091,10.9458324 C13.8146159,10.9458324 14.9278852,12.0610897 14.9278852,13.4308085 C14.9278852,14.6315489 14.0730534,15.6374672 12.9399043,15.866085 L12.9399043,16.909775 L10.9519235,16.909775 L10.9519235,15.9157846 L8.9639426,15.9157846 L8.9639426,13.9278037 L12.4429091,13.9278037 C12.7172505,13.9278037 12.9399043,13.7051498 12.9399043,13.4308085 C12.9399043,13.1574611 12.7172505,12.9338133 12.4429091,12.9338133 L11.4489187,12.9338133 C10.0791999,12.9338133 8.9639426,11.818556 8.9639426,10.4488372 C8.9639426,9.25008472 9.81877437,8.24516039 10.9519235,8.01356062 L10.9519235,6.96987067 L12.9399043,6.96987067 L12.9399043,7.9638611 L14.9278852,7.9638611 L14.9278852,9.95184196 Z"></path>
+                </g>
+              </svg>
+            </span>
+
+            {{taskInfo.result.currency.sign}}
+            {{taskInfo.result.budget.minimum}} ~ {{taskInfo.result.budget.maximum}}
+            {{taskInfo.result.currency.code}}
+            {{taskInfo.result.type=="hourly"?"/hr":""}}
+          </span>
+        </div>
+        <div class="mt-3" *ngIf="userInfo.result && userInfo.result.users[taskInfo.result.owner_id]">
+          <span>
+            {{userInfo.result.users[taskInfo.result.owner_id].since}}
+          </span>
+          <span class="float-right">
+            {{taskInfo.result.submitDate}}
+          </span>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="bid-comment" *ngIf="taskSeoInfo.result">
+          <p class="bid-comment" [innerHTML]="replaceUrlLink(taskSeoInfo.result.projects[0].description)"></p>
+        </div>
+        <div class="row mb-3 ml-1" *ngIf="taskSeoInfo.result">
+          <button *ngFor="let job of taskSeoInfo.result.projects[0].jobs" class="mr-1" nbButton outline status="info"
+            shape="round" size="tiny">
+            {{job.name}}
+          </button>
+        </div>
+      </nb-card-body>
+      <nb-card-footer *ngIf="taskInfo.result.bid_stats">
+        <nb-accordion multi>
+          <nb-accordion-item >
+            <nb-accordion-item-header class="acc-header">
+              Bids ({{taskInfo.result.bid_stats.bid_count}} / {{taskInfo.result.currency.sign}}{{covertFixedVal(taskInfo.result.bid_stats.bid_avg)}})
+            </nb-accordion-item-header>
+            <nb-accordion-item-body *ngIf="bidsInfo.result">
+              <div class="bid-comment" *ngFor="let bid of bidsInfo.result.bids">
+                <div *ngIf="!bid.sealed">
+                  <p>
+                    {{bid.description}}
+                  </p>
+                  <hr/>
+                  <hr/>
+                </div>
+
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+
+          <nb-accordion-item>
+            <nb-accordion-item-header class="acc-header">
+              Reviews (Client: {{userClientInfo.reviews}} / {{taskInfo.result.currency.sign}}{{covertFixedVal(userClientInfo.review_cost)}}, Freelancer: {{userFreelancerInfo.reviews}} / {{taskInfo.result.currency.sign}}{{covertFixedVal(userFreelancerInfo.review_cost)}})
+            </nb-accordion-item-header>
+            <nb-accordion-item-body *ngIf="userClientInfo.result">
+              <div class="bid-comment" *ngFor="let proj of userClientInfo.result.projectss">
+                <p>
+                  {{proj[1].preview_description}}<br/>
+                  <button *ngFor="let job of proj[1].jobs" class="mr-2" nbButton outline status="info" shape="round"
+                    size="tiny">
+                    {{job.name}}
+                  </button>
+                </p>
+                <hr/>
+              </div>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </nb-card-footer>
+    </nb-card>
+  </div>
+  <div class="col-md-4">
+    <nb-card class="inline-form-card">
+      <nb-card-header class="form-inline">
+        <div class="row w-100">
+          <div class="col-10" *ngIf="accountInfo.value && adminUser && adminUser.role=='admin'">
+            <nb-radio-group [(ngModel)]="accountInfo.value">
+              <nb-radio class="d-inline" *ngFor="let item of accountInfo.list" [value]="item[1].user_name" [checked]="!!(accountInfo.value==item[1].user_name)">
+                {{item[1].user_name}}
+              </nb-radio>
+            </nb-radio-group>
+          </div>
+          <div class="col-10" *ngIf="accountInfo.value && adminUser && adminUser.role!='admin'">
+            Gromov
+          </div>
+          <span class="col-2" *ngIf="taskSeoInfo.result && !taskSeoInfo.result.projects[0].upgrades.ip_contract && !taskSeoInfo.result.projects[0].upgrades.NDA && !taskSeoInfo.result.projects[0].upgrades.pf_only && !taskSeoInfo.result.projects[0].upgrades.sealed && !taskSeoInfo.result.projects[0].upgrades.qualified">
+            <button class="mr-2" nbButton outline status="danger" shape="round" (click)="goodBid()">
+              Apply
+            </button>
+          </span>
+        </div>
+      </nb-card-header>
+      <nb-card-body *ngIf="taskInfo.result">
+        <div class="row mb-3">
+          <div class="col-6">
+            <nb-form-field>
+              <span nbPrefix>
+                {{taskInfo.result.currency.sign}}
+              </span>
+              <input [(ngModel)]="budgetInput" type="text" nbInput fullWidth shape="rectangle"
+              placeholder="Amount">
+              <span nbSuffix>
+                {{taskInfo.result.currency.code}}
+                {{taskInfo.result.type=="hourly"?"/hr":""}}
+              </span>
+            </nb-form-field>
+          </div>
+          <div class="col-6">
+            <nb-form-field>
+              <input [(ngModel)]="periodInput" type="text" nbInput fullWidth shape="rectangle" placeholder="Period">
+              <span nbSuffix>
+                Days
+              </span>
+            </nb-form-field>
+          </div>
+        </div>
+        <div style="position:relative" class="mb-3">
+          <textarea rows="30" id="bid-comment" nbInput fullWidth placeholder="Proposal"
+          *ngIf="taskInfo.result && userInfo.result" [value]="getAutoBid()" ></textarea>
+          <button style="position:absolute;right:0" nbButton nbSuffix ghost shape="round" shape="round" size="large" (click)="copyBid()">
+            <nb-icon icon="copy-outline"></nb-icon>
+          </button>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+
+  <div class="col-md-4">
+    <nb-card class="inline-form-card">
+      <nb-card-body>
+        <nb-select placeholder="Select Template" [(selected)]="selectedPreTemplate" (selectedChange)="changePreTemplate()">
+          <nb-option value="-1"> No Template </nb-option>
+          <nb-option *ngFor="let preTemplate of preTemplates | keyvalue" [value]="preTemplate.key">{{ preTemplate.value['name'] }}</nb-option>
+        </nb-select>
+        <nb-accordion multi class="mb-3 pt-3">
+          <nb-accordion-item expanded="false" *ngFor="let temp of myBidTemplate">
+            <nb-accordion-item-header class="acc-header">
+              <nb-checkbox [(ngModel)]="temp[2]" class="mr-1" (click)="$event.stopPropagation()" (checkedChange)="checkTemplate($event, temp)"></nb-checkbox>
+              {{temp[2]?temp[3]:''}}
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <nb-radio-group [ngModel]="temp[3]" (valueChange)="changeTemplate($event, temp)">
+                <nb-radio class="d-block" *ngFor="let item of temp[1] | keyvalue" [value]="item.key">
+                  {{item.value['template']}}
+                </nb-radio>
+              </nb-radio-group>
+            </nb-accordion-item-body>
+          </nb-accordion-item>
+        </nb-accordion>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

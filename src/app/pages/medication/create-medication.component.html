@@ -1,0 +1,43 @@
+<nb-card>
+    <nb-card-header>
+        <h5>Create New Medication</h5>
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pb-3">
+                    <nb-select placeholder="Select Resident" [(selected)]="selectedResident">
+                        <nb-option *ngFor="let resident of residents | keyvalue" [value]="resident.key">{{resident.value.name}}</nb-option>
+                    </nb-select>
+                </div>
+                <div *ngIf="selectedResident >= 0" class="home-resident-personal-info row">
+                    <div class="col-lg-4">
+                        <img alt="" src="./assets/images/dorthy-goodall.png" width="150px">
+                    </div>
+                    <div class="col-lg-8">
+                        <h6>Code: {{residents[selectedResident].code}}</h6>
+                        <h6>Gender: {{residents[selectedResident].gender}}</h6>
+                        <h6>D.O.B: {{residents[selectedResident].dob}}</h6>
+                        <h6>Room: {{residents[selectedResident].room}}</h6>
+                        <h6>Doctor: John Doe</h6>
+                        <h6>Nurse: Michelle O'keeffe</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <textarea rows="10" nbInput fullWidth shape="round" placeholder="Medication Detail" [(ngModel)]="medicationDetail"></textarea>
+            </div>
+        </div>
+    </nb-card-body>
+    <nb-card-footer>
+        <div class="float-right">
+            <button nbButton status="primary" hero (click)="createMedication()">
+                Create
+            </button>
+            <button nbButton status="danger" hero (click)="cancel()" class="ml-3">
+                Cancel
+            </button>
+        </div>
+    </nb-card-footer>
+</nb-card>

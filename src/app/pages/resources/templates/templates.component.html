@@ -1,0 +1,12 @@
+<nb-card>
+    <nb-card-header>
+        Templates
+        <button class="mr-2 float-right" nbButton outline status="danger" shape="round" (click)="addNewTemplate()">
+            Add New
+        </button>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event)"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>

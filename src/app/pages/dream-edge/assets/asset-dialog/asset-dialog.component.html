@@ -1,0 +1,64 @@
+<nb-card >
+  <nb-card-header>
+    <h4>Asset Detail</h4>
+  </nb-card-header>
+  <nb-card-body class="asset-dialog">
+    <form>
+      <div class="form-group row">
+        <label  for="inputFloorplan" class="label col-sm-3 col-form-label">FloorPlan</label>
+        <div class="col-sm-9">
+          <nb-select class="fp-name" *ngIf="fpData.data !== undefined" placeholder="Select Floorplan" [(selected)]="seletedData.fpName" (selectedChange)="changeFpName($event)">
+            <nb-option *ngFor="let fp of fpData.data" [value]="fp.id">{{fp.fp_name}}</nb-option>
+          </nb-select>
+          <!-- <input type="text" nbInput fullWidth id="inputFloorplan" placeholder="Floorplan"> -->
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label for="inputName" class="label col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-9">
+          <input #assetName type="text" nbInput fullWidth id="inputName" [value]="seletedData.Name" placeholder="Asset Name">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputDeviceID" class="label col-sm-3 col-form-label">DeviceID</label>
+        <div class="col-sm-9">
+          <nb-select class="device-id-select" *ngIf="tags.length>0" placeholder="Select DeviceID"  [(selected)]="seletedData.DeviceID"  (selectedChange)="changeDeviceID($event)">
+              <nb-option *ngFor="let tag of tags" [value]="tag[0]">{{tag[0]}}</nb-option>
+          </nb-select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="inputDeviceID" class="label col-sm-3 col-form-label">Icon</label>
+        <div class="col-sm-9">
+          <nb-select class="kind-select" placeholder="Select Icon" [(selected)]="seletedData.kind"  (selectedChange)="changeIcon($event)">
+            <nb-select-label ><nb-icon [icon]="assetIcon"></nb-icon>{{assetIcon}}</nb-select-label>
+            <nb-option *ngFor="let kind of kinds" [value]="kind">
+              <div>
+                <nb-icon [icon]="kind"></nb-icon>{{kind}}
+              </div>
+            </nb-option>
+          </nb-select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-3 label">Status</label>
+        <div class="col-sm-9">
+          <!-- <nb-radio-group>
+            <nb-radio>Option 1</nb-radio>
+            <nb-radio>Option 2</nb-radio>
+            <nb-radio disabled>Disabled Option</nb-radio>
+          </nb-radio-group> -->
+        </div>
+      </div>
+    </form>
+  </nb-card-body>
+  <nb-card-footer class="d-flex justify-content-between">
+    <button nbButton hero status="primary" (click)="add_asset(assetName.value)">{{param?'Update':'Add'}}</button>
+    <button nbButton hero status="secondary" (click)="dismiss()">Close</button>
+  </nb-card-footer>
+</nb-card>

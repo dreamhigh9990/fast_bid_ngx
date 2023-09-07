@@ -1,0 +1,38 @@
+<nb-card>
+    <nb-card-header>
+        <h5> Template Detail </h5>
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row">
+            <div class="col-12">
+                <input [(ngModel)]="templateName" type="text" nbInput shape="rectangle" placeholder="Name">
+                <button class="mr-2 float-right" nbButton outline status="danger" shape="round" (click)="addNewTemplate()">
+                    {{ templateData ? 'Save' : 'Add' }}
+                </button>
+            </div>
+        </div>
+        <div class="row pt-3">
+            <div class="col-6">
+                <nb-accordion multi class="mb-3">
+                    <nb-accordion-item expanded="false" *ngFor="let temp of myBidTemplate">
+                        <nb-accordion-item-header class="acc-header">
+                            <nb-checkbox [(ngModel)]="temp[2]" class="mr-1" (click)="$event.stopPropagation()" (checkedChange)="checkTemplate($event, temp)"></nb-checkbox>
+                            {{temp[2]?temp[3]:''}}
+                        </nb-accordion-item-header>
+                        <nb-accordion-item-body>
+                            <nb-radio-group [ngModel]="temp[3]" (valueChange)="changeTemplate($event, temp)">
+                                <nb-radio class="d-block" *ngFor="let item of temp[1] | keyvalue" [value]="item.key">
+                                    {{item.value['template']}}
+                                </nb-radio>
+                            </nb-radio-group>
+                        </nb-accordion-item-body>
+                    </nb-accordion-item>
+                </nb-accordion>
+            </div>
+            <div class="col-6">
+                <textarea rows="30" readonly nbInput fullWidth placeholder="Proposal" [value]="getAutoBid()" ></textarea>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

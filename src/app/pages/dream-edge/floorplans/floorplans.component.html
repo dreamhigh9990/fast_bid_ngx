@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-between">
+  <h3>Floorplans</h3>
+  <div class="d-flex ">
+    <nb-toggle class="mr-4" status="primary" [(checked)]="chkView">{{chkView?"Map View":"List View"}}</nb-toggle>
+
+    <button class="mr-4" nbButton status="primary" hero (click)="addNewFloorPlan()">
+      Add Floor Plan
+    </button>
+  </div>
+</div>
+
+<div class="container m-0 mt-2 ">
+  <div class="row">
+    <div [ngClass]="chkView ? 'col-xl-7' : 'col-xl-12'" >
+      <div class="row">
+        <nb-card [ngClass]="chkView ? 'col-md-12 floor-card' : 'col-xl-5 floor-card mx-4'" *ngFor="let floorplan of floorplans" (click)="open(floorplan)">
+          <nb-card-body class="py-2 px-1">
+            <div class="container">
+              <div class="row ">
+                <div class="col-sm-3 floor-img d-flex align-items-center">
+                  <img [src]="floorplan.imgUrl">
+                </div>
+                <div class="col-sm-9">
+                  <span class="floor-title">{{floorplan.fpTitle}}</span>
+                  <span class="floor-address">
+                    <nb-icon icon="pin"></nb-icon>{{floorplan.fpAddress}}
+                  </span>
+                  <span class="floor-customer">
+                    <nb-icon icon="wheelchair" pack="fa"></nb-icon> {{floorplan.Customer}}
+                  </span>
+                  <span class="floor-nurse ">
+                    <nb-icon icon="user-doctor" pack="fa"></nb-icon> {{floorplan.Doctor}}
+                    <nb-icon class="ml-3" icon="user-nurse" pack="fa"></nb-icon> {{floorplan.Nurse}}
+                  </span>
+                  <div class="row floor-env">
+                    <div class="col-4">
+                      <div class="d-flex align-items-center row">
+                        <nb-icon class="mr-2" icon="wifi"></nb-icon>
+                        <div>
+                          <span class="d-block">Sensors</span>
+                          <span class="d-block text-center">{{floorplan.Sensors}}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="d-flex align-items-center row">
+                        <nb-icon class="mr-2" icon="radio"></nb-icon>
+                        <div>
+                          <span class="d-block">Assets</span>
+                          <span class="d-block text-center">{{floorplan.Assets}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </nb-card-body>
+        </nb-card>
+      </div>
+
+
+    </div>
+    <div *ngIf="chkView" class="col-xl-5">
+      <google-map [center]="floorplans[0].latlng" [zoom]="4" width="100%" height="100vh">
+        <map-marker *ngFor="let floorplan of floorplans" [position]="floorplan.latlng"></map-marker>
+      </google-map>
+    </div>
+  </div>
+</div>

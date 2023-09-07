@@ -1,0 +1,233 @@
+@import "../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  .dash-div {
+    min-height: 150px;
+    padding: 0.25rem 1rem 0.5rem 1rem;
+  }
+  .dash-div div {
+    height: 100%;
+    box-shadow: 3px 3px 8px rgb(141, 141, 141);
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    font-weight: 700;
+  }
+  .db-icon {
+    font-size: 2.25rem;
+    margin-left: 0.75rem;
+  }
+  .db-label {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #2e363e;
+    margin-bottom: 0.5rem;
+  }
+  // .dash-div div span nb-icon{
+  //   color: #2E363E;
+  // }
+  .dash-div div:hover {
+    cursor: pointer;
+    background-color: rgb(240, 240, 240) !important;
+  }
+  .dash-div div.alert {
+    -webkit-animation: alert-slide 2s infinite;
+    animation: alert-slide 2s infinite;
+
+  }
+  @-webkit-keyframes alert-slide {
+    0% {
+
+      -webkit-filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+      filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+    }
+    50% {
+      -webkit-filter: drop-shadow(3px 3px 22px transparent);
+      filter: drop-shadow(3px 3px 22px transparent);
+    }
+    100% {
+      -webkit-filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+      filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+    }
+  }
+
+  @keyframes alert-slide {
+    0% {
+      background-color: transparent ;
+      -webkit-filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+      filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+    }
+    50% {
+      background-color: rgb(255, 190, 190) ;
+      -webkit-filter: drop-shadow(3px 3px 22px transparent);
+      filter: drop-shadow(3px 3px 22px transparent);
+    }
+    100% {
+      background-color: transparent;
+      -webkit-filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+      filter: drop-shadow(3px 3px 22px rgba(156, 28, 28, 0.7));
+    }
+  }
+
+  .dash-div:nth-child(1) div {
+    background-color: #fff5f6;
+    color: #fb3d4e;
+  }
+  .dash-div:nth-child(2) div {
+    background-color: #f4f5fa;
+    color: #2717a4;
+  }
+  .dash-div:nth-child(3) div {
+    background-color: #e6f2f6;
+    color: #027fff;
+  }
+  .dash-div:nth-child(4) div {
+    background-color: #eaf3ee;
+    color: #2a8853;
+  }
+  .dash-div:nth-child(5) div {
+    background-color: #f4f5fa;
+    color: #2717a4;
+  }
+  .dash-div:nth-child(6) div {
+    background-color: #fbf4e8;
+    color: #da8e16;
+  }
+
+  nb-card {
+    border-radius: 1rem;
+  }
+  .medical-monitor {
+    // background-color: #e6dcdb;
+    background-blend-mode: screen;
+  }
+  .back-board {
+    width: 100%;
+    height: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+
+    // box-shadow: 3px 3px 6px rgb(141, 141, 141);
+  }
+  .real-wifi {
+    cursor: pointer;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    z-index: 100;
+    background-color: rgba(74, 54, 255, 0.5);
+    border-radius: 12px;
+  }
+  .sensor-label {
+    position: absolute;
+    color: grey;
+  }
+  .sensor-label p {
+    color: rgb(71, 1, 1);
+    font-weight: 800;
+    font-size: large;
+  }
+  .sensor-label.online {
+    color: rgb(55, 0, 255);
+    font-weight: 800;
+    font-size: large;
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+  }
+
+  .asset-label {
+    position: absolute;
+    color: grey;
+  }
+  .asset-label p {
+    color: rgb(71, 1, 1);
+    font-weight: 800;
+    font-size: large;
+  }
+  .asset-label.online {
+    color: rgb(252, 2, 2);
+    font-weight: 800;
+    font-size: larger;
+    -webkit-text-stroke: 0.5px rgb(255, 255, 255);
+  }
+
+  .real-asset {
+    cursor: pointer;
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    z-index: 100;
+    // background-color: rgba(255, 54, 54, 0.5);
+    border-radius: 12px;
+  }
+  .real-asset nb-icon {
+    width: 24px;
+    height: 24px;
+    color: rgb(255, 54, 54);
+  }
+  .real-asset.online {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 3px 3px 6px rgb(255, 54, 54);
+  }
+
+  .real-wifi.online {
+    background-color: rgb(74, 54, 255);
+    box-shadow: 3px 3px 6px rgb(74, 54, 255);
+  }
+
+  .real-wifi nb-icon {
+    width: 24px;
+    height: 24px;
+    color: rgb(179, 179, 179);
+  }
+  .real-wifi.online nb-icon {
+    -webkit-filter: drop-shadow(0 0 10px #f39595);
+    filter: drop-shadow(0 0 10px #f39595);
+
+    // -webkit-animation: slide 2s linear infinite;
+    // animation: slide 2s linear infinite;
+  }
+
+  .real-asset.online nb-icon {
+    -webkit-filter: drop-shadow(0 0 10px #f39595);
+    filter: drop-shadow(0 0 10px #f39595);
+
+    // -webkit-animation: slide 2s linear infinite;
+    // animation: slide 2s linear infinite;
+  }
+
+  @-webkit-keyframes slide {
+    0% {
+      color: rgb(255, 255, 255);
+      -webkit-filter: drop-shadow(0 0 10px #f39595);
+      filter: drop-shadow(0 0 10px #f39595);
+    }
+    50% {
+      color: #ffb8b8;
+      -webkit-filter: drop-shadow(0 0 2px #f39595);
+      filter: drop-shadow(0 0 2px #f39595);
+    }
+    100% {
+      color: rgb(255, 255, 255);
+      -webkit-filter: drop-shadow(0 0 10px #f39595);
+      filter: drop-shadow(0 0 10px #f39595);
+    }
+  }
+
+  @keyframes slide {
+    0% {
+      color: rgb(255, 255, 255);
+      -webkit-filter: drop-shadow(0 0 10px #f39595);
+      filter: drop-shadow(0 0 10px #f39595);
+    }
+    50% {
+      color: #ffb8b8;
+      -webkit-filter: drop-shadow(0 0 2px #f39595);
+      filter: drop-shadow(0 0 2px #f39595);
+    }
+    100% {
+      color: rgb(255, 255, 255);
+      -webkit-filter: drop-shadow(0 0 10px #f39595);
+      filter: drop-shadow(0 0 10px #f39595);
+    }
+  }
+}

@@ -1,0 +1,60 @@
+img {
+  width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+}
+
+.floor-card,google-map {
+  border-radius: 1rem;
+}
+
+.floor-card:hover {
+  border: 1px solid rgba(52, 52, 219, 0.315);
+  box-shadow: 3px 2px 5px rgba(52, 52, 219, 0.315);
+  // background-color: rgba(255, 255, 255, 0.671);
+
+  cursor: pointer;
+  // background-color: #eaedff8e !important;
+  /* Firefox */
+  -moz-transition: all 0.5s ease-in;
+  /* WebKit */
+  -webkit-transition: all 0.5s ease-in;
+  /* Opera */
+  -o-transition: all 0.5s ease-in;
+  /* Standard */
+  transition: all 0.5s ease-in;
+}
+.floor-img img {
+  border-radius: 1rem;
+}
+.floor-title {
+  display: block;
+  font-size: large;
+  font-weight: 700;
+  color: #1b1746;
+  padding-top: 0.5rem;
+}
+.floor-address {
+  display: block;
+  font-size: small;
+  color: grey;
+  margin-top: 0.15rem;
+}
+.floor-customer {
+  display: block;
+  margin-top: 0.25rem;
+  font-weight: 700;
+  color: #1b1746;
+}
+.floor-nurse {
+  display: block;
+  margin-top: 0.05rem;
+  color: #1b1746;
+}
+.floor-nurse nb-icon{
+  font-size: 1.0rem;
+}
+.floor-env {
+  margin: 0.75rem 0 0.25rem 0.5rem;
+  color: gray;
+}

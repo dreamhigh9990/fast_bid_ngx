@@ -1,0 +1,116 @@
+nb-card {
+    transform: translate3d(0, 0, 0);
+}
+
+.app-home-header-background {
+    overflow: hidden;
+}
+
+.app-home-section {
+    text-align: center;
+    padding-top: 60px;
+}
+
+.home-resident-table {
+    padding: 60px;
+}
+
+nb-card-header .import {
+    float: right;
+}
+
+::file-selector-button {
+    display: none;
+}
+
+.home-resident-table table {
+    width: 100%;
+}
+
+.home-resident-detail {
+    padding: 60px;
+}
+
+.app-home-headline {
+    h1 {
+        font-size: 56px;
+        font-weight: 300;
+        line-height: 56px;
+        margin: 15px 5px;
+    }
+    h2 {
+        font-size: 18px;
+        font-weight: 300;
+        line-height: 28px;
+        margin: 15px 0 25px;
+    }
+}
+
+.app-home-docs-button {
+    margin: 30px;
+}
+
+.mat-row.hovered {
+    background: #eee;
+    cursor: pointer;
+}
+
+.mat-row.highlighted {
+    background: #999;
+}
+
+.mat-stepper-horizontal {
+    margin-top: 8px;
+}
+
+.mat-form-field {
+    margin-top: 16px;
+}
+
+::ng-deep .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+    height: 50px;
+    width: 50px;
+    font-size: 30px !important;
+}
+
+.home-resident-detail .mat-icon {
+    height: 50px !important;
+    width: 50px !important;
+    font-size: 30px !important;
+    left: 10px !important;
+    top: 10px !important;
+}
+
+.home-resident-detail mat-card-title {
+    padding: 20px;
+}
+
+.home-resident-status {
+    padding: 50px;
+}
+
+.home-resident-detail mat-card {
+    width: 100%;
+    box-shadow: none;
+}
+
+.home-resident-detail table {
+    width: 100%;
+}
+
+.home-resident-status mat-horizontal-stepper {
+    padding-top: 50px;
+}
+
+.home-resident-personal-info {
+    text-align: left;
+}
+
+::ng-deep .mat-grid-tile .mat-figure {
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+}

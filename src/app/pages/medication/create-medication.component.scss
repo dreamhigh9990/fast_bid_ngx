@@ -1,0 +1,21 @@
+:host ::ng-deep nb-stepper .step-content {
+    text-align: center;
+    button {
+        cursor: pointer;
+        margin: 0.5rem;
+    }
+}
+
+nb-card {
+    width: 70vw;
+    min-width: 100px;
+}
+
+nb-card-body {
+    padding: 2rem 5rem;
+    min-height: 300px;
+}
+
+.nb-stepper-container {
+    padding-top: 3rem;
+}

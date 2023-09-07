@@ -1,0 +1,32 @@
+@import "../../../../@theme/styles/themes";
+
+@include nb-install-component() {
+  nb-checkbox {
+    margin-bottom: 1rem;
+  }
+
+  .form-inline [fullWidth] {
+    flex: 1;
+  }
+
+  .form-inline > * {
+    margin: 0 1.5rem 1.5rem 0;
+  }
+
+  nb-card.inline-form-card nb-card-body {
+    padding-bottom: 0;
+  }
+  .asset-dialog{
+    width: 600px;
+  }
+  .fp-name{
+    width: 350px;
+  }
+  .device-id-select{
+    width:480px;
+    max-width: 25rem !important;
+  }
+  .kind-select{
+    width:280px;
+  }
+}

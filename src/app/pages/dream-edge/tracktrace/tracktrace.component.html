@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-between">
+  <h3>Track and Trace</h3>
+  <div class="d-flex ">
+  </div>
+</div>
+
+<div class="container mb-2">
+  <div class="row">
+    <div class="dash-div col-lg-2 col-md-4 col-sm-6">
+      <div>
+        <nb-icon class="d-block db-icon" icon="cast"></nb-icon>
+        <span class="d-block db-label">
+          Device Status
+        </span>
+        <span class="d-block">
+          <nb-icon class="mx-2" icon="wifi"></nb-icon>{{dbInfo.deviceInfo.sensors}}
+        </span>
+        <span class="d-block">
+          <nb-icon class="mx-2" icon="radio"></nb-icon>{{dbInfo.deviceInfo.assets}}
+        </span>
+      </div>
+    </div>
+    <div class="dash-div col-lg-2 col-md-4 col-sm-6">
+      <div class="">
+        <nb-icon class="d-block db-icon" icon="thermometer"></nb-icon>
+        <span class="d-block db-label">
+          Env Temperature
+        </span>
+        <span class="d-block">
+          <nb-icon class="mx-2" icon="thermometer"></nb-icon>{{dbInfo.roomTemp}}°C
+        </span>
+        <span class="d-block">
+          <nb-icon class="mx-2" icon="droplet-degree" pack="fa"></nb-icon>{{dbInfo.roomHumd}}%
+        </span>
+      </div>
+    </div>
+    <div class="dash-div col-lg-2 col-md-4 col-sm-6">
+      <div [ngClass]="dbInfo.bodyBpm>72?'alert':''">
+        <nb-icon class="d-block db-icon" icon="heart-pulse" pack="fa"></nb-icon>
+        <span class="d-block db-label">
+          Heart BTM & RR
+        </span>
+        <span class="d-block">
+          <nb-icon class="mx-2" icon="heart" pack="fa"></nb-icon>{{dbInfo.bodyBpm}}bpm
+        </span>
+        <span class="d-block">
+          <nb-icon class="mx-2" icon="lungs" pack="fa"></nb-icon>{{dbInfo.bodyRR}}%
+        </span>
+      </div>
+    </div>
+    <div class="dash-div col-lg-2 col-md-4 col-sm-6">
+      <div>
+        <nb-icon class="d-block db-icon" icon="thermometer" pack="fa"></nb-icon>
+        <span class="d-block db-label">
+          Blood
+        </span>
+        <span class="d-block">
+          Pressure:{{dbInfo.bodyBPressure}}mmHg
+        </span>
+        <span class="d-block">
+          Glucose:{{dbInfo.bodyBSugar}}mg/dL
+        </span>
+      </div>
+    </div>
+    <div class="dash-div col-lg-2 col-md-4 col-sm-6">
+      <div>
+        <nb-icon class="d-block db-icon" icon="bed" pack="fa"></nb-icon>
+        <span class="d-block db-label mb-2">
+          Body
+        </span>
+        <span class="d-block my-1">
+          Temperature : {{dbInfo.bodyTemp}}°C
+        </span>
+        <span class="d-block my-1">
+          Weight : 67.2Kg
+        </span>
+      </div>
+    </div>
+    <div class="dash-div col-lg-2 col-md-4 col-sm-6">
+      <div>
+        <nb-icon class="d-block db-icon" icon="house-medical" pack="fa"></nb-icon>
+        <span class="d-block db-label">
+          Other
+        </span>
+        <span class="d-block">
+          Fridge Temperature: {{dbInfo.fridgeTemp}}°C
+        </span>
+        <span class="d-block">
+          Oxygen Tank: 72%
+        </span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<nb-card class="mt-3">
+  <nb-card-body>
+
+    <div>
+      <!-- <img #trackBoard (window:resize)="onResize($event)" class="back-board" src="/assets/images/dream-edge/3d_floor_plan_v5.jpg"> -->
+      <img #trackBoard (window:resize)="onResize($event)" class="back-board" src="/assets/images/dream-edge/cburst.jpg">
+      <div *ngFor="let sensor of positions | keyvalue" [ngClass]="sensor.value.status?'online':''" class="real-wifi"
+        [ngStyle]="{'left': sensor.value.posLeft+'px', 'top':sensor.value.posTop+'px'}">
+        <nb-icon icon="wifi"></nb-icon>
+      </div>
+      <div *ngFor="let sensor of positions | keyvalue" class="sensor-label" [ngClass]="sensor.value.status?'online':''"
+        [ngStyle]="{'left': sensor.value.posLeft+'px', 'top':(sensor.value.posTop+24)+'px'}">
+        <span class="mb-0 ml-n2">{{sensor.value.name}}</span>
+        <p class="mb-0 ml-n2" *ngIf="sensor.value.temperature">
+          <nb-icon icon="thermometer"></nb-icon>{{sensor.value.temperature}}°C
+        </p>
+        <p class="mb-0 ml-n2" *ngIf="sensor.value.humidity">
+          <nb-icon icon="droplet-degree" pack="fa"></nb-icon>{{sensor.value.humidity}}%
+        </p>
+      </div>
+
+      <div *ngFor="let asset of assets" [ngClass]="asset[1].status?'online':''" class="real-asset"
+        [ngStyle]="{'left': asset[1].posLeft+'px', 'top':asset[1].posTop+'px'}">
+        <nb-icon [icon]="asset[1].kind"></nb-icon>
+      </div>
+      <div *ngFor="let asset of assets" [ngClass]="asset[1].status?'online':''" class="asset-label"
+        [ngStyle]="{'left': (asset[1].posLeft)+'px', 'top':(asset[1].posTop+24)+'px'}">
+        <div *ngIf="asset[1].name">
+          <span class="mb-0 ml-n2">{{asset[1].name}}</span>
+          <p class="mb-0 ml-n2" *ngIf="asset[1].temp">
+            <nb-icon icon="thermometer"></nb-icon>{{asset[1].temp}}°C
+          </p>
+          <p class="mb-0 ml-n2" *ngIf="asset[1].bpm">
+            <nb-icon class="medical-monitor" icon="briefcase-medical" pack="fa"></nb-icon>{{asset[1].bpm}}bpm,
+            RR:{{asset[1].rr}}%
+          </p>
+          <!-- <p class="mb-0" *ngIf="asset[1].rr"><nb-icon icon="lungs" pack="fa"></nb-icon></p> -->
+          <!-- <p *ngIf="sensor.humidity"><nb-icon icon="droplet-degree" pack="fa"></nb-icon>{{sensor.humidity}}%</p> -->
+        </div>
+
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>

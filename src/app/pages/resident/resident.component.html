@@ -1,0 +1,15 @@
+<nb-card>
+    <nb-card-header>
+        Residents
+        <div class="form-group import">
+            <input type="file" id="file" (change)="handleFileInput($event)" #file>
+            <button nbButton status="success" hero (click)="file.click()">
+            Import from CSV
+            </button>
+        </div>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onSelectResident($event)"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>

@@ -1,0 +1,12 @@
+<nb-card>
+    <nb-card-header>
+        Projects
+        <span class="float-right">
+            <nb-checkbox [(ngModel)]="favorite" class="mr-1" (click)="$event.stopPropagation()" (checkedChange)="showFavorite($event)"></nb-checkbox> Show Favorite Projects
+        </span>
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (userRowSelect)="onSelectJob($event)"></ng2-smart-table>
+    </nb-card-body>
+</nb-card>

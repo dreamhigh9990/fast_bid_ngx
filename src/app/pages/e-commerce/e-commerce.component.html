@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-xxl-3" *ngFor="let statusCard of statusCards">
+    <div (click)="clickStat(statusCard)">
+      <ngx-status-card [title]="statusCard.title" [type]="statusCard.type" [value]="statusCard.value">
+        <i [ngClass]="statusCard.iconClass"></i>
+      </ngx-status-card>
+    </div>
+  </div>
+</div>
